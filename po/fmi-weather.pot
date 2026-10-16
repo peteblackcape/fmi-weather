@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fmi-weather\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-16 12:50+0300\n"
+"POT-Creation-Date: 2026-10-16 12:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,60 +17,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/extension.js:53
+#: src/extension.js:58
 msgid "Weather"
 msgstr ""
 
-#: src/extension.js:112
+#: src/extension.js:117
 msgid "Set Location…"
 msgstr ""
 
-#: src/extension.js:378
+#: src/extension.js:384
 msgid "No location set"
 msgstr ""
 
-#: src/extension.js:382 src/prefs.js:75
+#: src/extension.js:388 src/prefs.js:75
 #, javascript-format
 msgid "Place “%s” not found"
 msgstr ""
 
-#: src/extension.js:387 src/extension.js:449
+#: src/extension.js:393 src/extension.js:455
 msgid "No connection"
 msgstr ""
 
-#: src/extension.js:387
+#: src/extension.js:393
 msgid "Loading…"
 msgstr ""
 
-#: src/extension.js:413
+#: src/extension.js:419
 #, javascript-format
 msgid "Feels like %s"
 msgstr ""
 
-#: src/extension.js:419
+#: src/extension.js:425
 #, javascript-format
 msgid "Wind %s m/s"
 msgstr ""
 
 #. Translators: hour in the hourly forecast, see GLib.DateTime.format()
-#: src/extension.js:424
+#: src/extension.js:430
 msgid "%l %p"
 msgstr ""
 
-#: src/extension.js:424
+#: src/extension.js:430
 msgid "%H"
 msgstr ""
 
 #. Translators: time of the last update, see GLib.DateTime.format()
-#: src/extension.js:447
+#: src/extension.js:453
 msgid "%l:%M %p"
 msgstr ""
 
-#: src/extension.js:447
+#: src/extension.js:453
 msgid "%H:%M"
 msgstr ""
 
-#: src/extension.js:450
+#: src/extension.js:456
 #, javascript-format
 msgid "Updated %s"
 msgstr ""

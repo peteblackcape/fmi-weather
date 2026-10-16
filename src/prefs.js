@@ -52,8 +52,8 @@ export default class FmiWeatherPreferences extends ExtensionPreferences {
             clearButton.visible = !!place;
         };
         updateLocationRows();
-        settings.connect('changed::place', updateLocationRows);
-        gnomeSettings?.connect('changed::locations', updateLocationRows);
+        const placeHandler = settings.connect('changed::place', updateLocationRows);
+        const gnomeHandler = gnomeSettings?.connect('changed::locations', updateLocationRows);
 
         placeRow.connect('changed', () => placeRow.remove_css_class('error'));
         placeRow.connect('apply', async () => {
@@ -72,7 +72,7 @@ export default class FmiWeatherPreferences extends ExtensionPreferences {
                 placeRow.add_css_class('error');
                 window.add_toast(new Adw.Toast({
                     title: e instanceof PlaceNotFoundError
-                        ? _('Place “%s” not found').replace('%s', place)
+                        ? _('Place “%s” not found').replace('%s', () => place)
                         : _('Could not check the place. Check your internet connection.'),
                 }));
             } finally {
@@ -108,6 +108,9 @@ export default class FmiWeatherPreferences extends ExtensionPreferences {
 
         window.connect('close-request', () => {
             session.abort();
+            settings.disconnect(placeHandler);
+            if (gnomeHandler)
+                gnomeSettings.disconnect(gnomeHandler);
             return false;
         });
     }

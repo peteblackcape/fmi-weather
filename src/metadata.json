@@ -4,6 +4,7 @@
     "description": "A simple weather indicator using open data from the Finnish Meteorological Institute (Ilmatieteenlaitos).",
     "version-name": "0.1.0",
     "shell-version": [
+        "50",
         "51"
     ],
     "url": "https://github.com/peteblackcape/fmi-weather",

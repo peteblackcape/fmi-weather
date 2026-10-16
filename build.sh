@@ -34,6 +34,8 @@ install)
 uninstall)
     rm -f "$INSTALL_DIR" ;;
 pack)
+    # gnome-extensions crashes if the output directory does not exist.
+    mkdir -p build
     build
     gnome-extensions pack --force --out-dir=build \
         --extra-source=fmi.js --extra-source=forecast.js \

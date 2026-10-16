@@ -20,7 +20,7 @@ set.
 
 ## Requirements
 
-- GNOME Shell 51
+- GNOME Shell 50 or 51 (for example Fedora 45 or Ubuntu 26.04)
 
 ## Installing from source
 
@@ -48,6 +48,12 @@ Weather data comes from the FMI open data service
 under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The extension
 fetches it every 15 minutes, and it keeps a cached copy in
 `~/.cache/fmi-weather@peteblackcape.github.io/`.
+
+## Privacy
+
+To get the forecast, the extension sends the place name, or the coordinates of
+the GNOME Weather location, to `opendata.fmi.fi` over HTTPS. Nothing else is
+sent, and no other services are contacted.
 
 ## License
 

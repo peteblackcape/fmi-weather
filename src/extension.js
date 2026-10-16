@@ -38,6 +38,11 @@ function formatTime(time, format) {
     return GLib.DateTime.new_from_unix_local(Math.floor(time / 1000)).format(format).trim();
 }
 
+// String.replace() would expand $& and similar patterns in the value.
+function fill(template, value) {
+    return template.replace('%s', () => String(value));
+}
+
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
@@ -327,7 +332,8 @@ class WeatherIndicator extends PanelMenu.Button {
         try {
             const [contents] = await this._cacheFile.load_contents_async(this._cancellable);
             const data = JSON.parse(new TextDecoder().decode(contents));
-            if (!this._data && data.key === this._location?.key) {
+            const valid = Array.isArray(data?.entries) && Number.isFinite(data.fetchedAt);
+            if (valid && !this._data && data.key === this._location?.key) {
                 this._data = data;
                 this._render();
             }
@@ -338,12 +344,12 @@ class WeatherIndicator extends PanelMenu.Button {
 
     async _saveCache() {
         try {
-            const dir = this._cacheFile.get_parent();
-            if (!dir.query_exists(null))
-                dir.make_directory_with_parents(null);
+            // The cache holds the location, so keep it private.
+            GLib.mkdir_with_parents(this._cacheFile.get_parent().get_path(), 0o700);
             const bytes = new GLib.Bytes(new TextEncoder().encode(JSON.stringify(this._data)));
             await this._cacheFile.replace_contents_bytes_async(bytes, null, false,
-                Gio.FileCreateFlags.REPLACE_DESTINATION, this._cancellable);
+                Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE,
+                this._cancellable);
         } catch (e) {
             if (!isCancelled(e))
                 console.warn(`FMI Weather: cannot save cache: ${e.message}`);
@@ -379,7 +385,7 @@ class WeatherIndicator extends PanelMenu.Button {
             return;
         }
         if (this._error === 'not-found') {
-            this._showMessage(_('Place “%s” not found').replace('%s', this._location.name),
+            this._showMessage(fill(_('Place “%s” not found'), this._location.name),
                 {showSettings: true});
             return;
         }
@@ -410,13 +416,13 @@ class WeatherIndicator extends PanelMenu.Button {
         this._currentTemperature.text = formatTemperature(current.temperature);
         this._descriptionLabel.text = currentSymbol.description ? _(currentSymbol.description) : '';
         this._feelsLikeLabel.text =
-            _('Feels like %s').replace('%s', formatTemperature(current.feelsLike));
+            fill(_('Feels like %s'), formatTemperature(current.feelsLike));
         this._feelsLikeLabel.visible = current.feelsLike !== null;
         if (current.windSpeed !== null) {
             const arrow = current.windDirection !== null
                 ? ` ${WIND_ARROWS[Math.round(current.windDirection / 45) % 8]}` : '';
             this._windLabel.text =
-                _('Wind %s m/s').replace('%s', Math.round(current.windSpeed)) + arrow;
+                fill(_('Wind %s m/s'), Math.round(current.windSpeed)) + arrow;
         }
         this._windLabel.visible = current.windSpeed !== null;
 
@@ -447,7 +453,7 @@ class WeatherIndicator extends PanelMenu.Button {
         const updateFormat = twelveHour ? _('%l:%M %p') : _('%H:%M');
         this._statusLabel.text = offline
             ? _('No connection')
-            : _('Updated %s').replace('%s', formatTime(this._data.fetchedAt, updateFormat));
+            : fill(_('Updated %s'), formatTime(this._data.fetchedAt, updateFormat));
     }
 
     destroy() {

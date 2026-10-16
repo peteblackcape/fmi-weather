@@ -57,8 +57,8 @@ export function summarize(entries, now = Date.now()) {
         days.push({
             time: midday.time,
             symbol: midday.symbol,
-            high: Math.max(...temperatures),
-            low: Math.min(...temperatures),
+            high: temperatures.length ? Math.max(...temperatures) : null,
+            low: temperatures.length ? Math.min(...temperatures) : null,
         });
     }
 
