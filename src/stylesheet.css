@@ -17,16 +17,17 @@
 }
 
 .fmi-weather-current-icon {
-    icon-size: 48px;
+    icon-size: 56px;
 }
 
 .fmi-weather-current-temperature {
-    font-size: 2.4em;
+    font-size: 2.8em;
     font-weight: 300;
 }
 
 .fmi-weather-details {
     spacing: 2px;
+    font-size: 0.9em;
 }
 
 .fmi-weather-hours {

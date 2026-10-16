@@ -235,6 +235,7 @@ class WeatherIndicator extends PanelMenu.Button {
         footerItem.add_child(new St.Label({
             style_class: 'fmi-weather-caption',
             text: 'ilmatieteenlaitos.fi',
+            opacity: SECONDARY_OPACITY,
             y_align: Clutter.ActorAlign.CENTER,
         }));
         footerItem.connect('activate', () => this._openForecastPage());
