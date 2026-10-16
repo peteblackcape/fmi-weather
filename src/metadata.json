@@ -1,0 +1,12 @@
+{
+    "uuid": "fmi-weather@peteblackcape.github.io",
+    "name": "FMI Weather",
+    "description": "A simple weather indicator using open data from the Finnish Meteorological Institute (Ilmatieteenlaitos).",
+    "version-name": "0.1.0",
+    "shell-version": [
+        "51"
+    ],
+    "url": "https://github.com/peteblackcape/fmi-weather",
+    "settings-schema": "org.gnome.shell.extensions.fmi-weather",
+    "gettext-domain": "fmi-weather@peteblackcape.github.io"
+}

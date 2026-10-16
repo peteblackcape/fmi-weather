@@ -1,0 +1,59 @@
+/* Layout only: colors and fonts come from the Shell theme. */
+
+.fmi-weather-menu {
+    min-width: 20em;
+}
+
+.fmi-weather-current {
+    spacing: 6px;
+}
+
+.fmi-weather-location {
+    font-weight: bold;
+}
+
+.fmi-weather-now {
+    spacing: 12px;
+}
+
+.fmi-weather-current-icon {
+    icon-size: 48px;
+}
+
+.fmi-weather-current-temperature {
+    font-size: 2.4em;
+    font-weight: 300;
+}
+
+.fmi-weather-details {
+    spacing: 2px;
+}
+
+.fmi-weather-hours {
+    spacing: 6px;
+}
+
+.fmi-weather-hour {
+    spacing: 4px;
+}
+
+.fmi-weather-small-icon {
+    icon-size: 16px;
+}
+
+.fmi-weather-day {
+    spacing: 12px;
+}
+
+.fmi-weather-day-name {
+    min-width: 3em;
+}
+
+.fmi-weather-day-temperature {
+    min-width: 2.5em;
+    text-align: right;
+}
+
+.fmi-weather-caption {
+    font-size: 0.9em;
+}

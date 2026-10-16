@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.fmi-weather" path="/org/gnome/shell/extensions/fmi-weather/">
+    <key name="place" type="s">
+      <default>''</default>
+      <summary>Custom place</summary>
+      <description>Place name used for the forecast. When empty, the location set in GNOME Weather is used.</description>
+    </key>
+    <key name="show-temperature" type="b">
+      <default>true</default>
+      <summary>Show temperature in the panel</summary>
+    </key>
+    <key name="panel-position" type="s">
+      <choices>
+        <choice value="left"/>
+        <choice value="center"/>
+        <choice value="right"/>
+      </choices>
+      <default>'right'</default>
+      <summary>Position in the top bar</summary>
+    </key>
+  </schema>
+</schemalist>
